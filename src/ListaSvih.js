@@ -1,15 +1,4 @@
 import React, {Component} from 'react';
-//
-// function isSearched(searchTerm) {
-//     return function (item) {
-//         return (
-//             item.ime.toLowerCase().includes(searchTerm.toLowerCase())
-//             || item.prezime.toLowerCase().includes(searchTerm.toLowerCase())
-//             || item.brojKartona.toString().includes(searchTerm.toLowerCase())
-//             || item.spol.toLowerCase().includes(searchTerm.toLowerCase())
-//
-//         )
-//     }
 const formatDate = (dateB) => {
     const y = new Date(dateB).getFullYear();
     const m = new Date(dateB).getMonth() + 1;

@@ -7,8 +7,6 @@ import Search from './Search';
 import uuid from "uuid";
 import Edit from './Edit'
 
-
-
 class App extends Component {
     state = {
         persons: [],
@@ -81,10 +79,10 @@ class App extends Component {
         const {persons, filter, tempId} = this.state
         //
         let displayList = "";
-        let displayNew = "none";
+        let displayEdit = "none";
         if (tempId !== null) {
             displayList = "none";
-            displayNew = "inline"
+            displayEdit = "inline"
 
         }
 
@@ -97,7 +95,7 @@ class App extends Component {
                             setNull={this.setNull}
                         />
                         {/*Za prvu rutu se dodaje exact*/}
-                        <Route exact path={"/"} render={props => (
+                        <Route exact path={"/"} render={() => (
                             <div>
                                 <div style={{display: displayList}}>
 
@@ -113,7 +111,7 @@ class App extends Component {
                                     />
 
                                 </div>
-                                <div style={{display: displayNew}}>
+                                <div style={{display: displayEdit}}>
                                     <Edit
                                         id={this.state.tempId}
                                         getPersons={this.getPersons}
@@ -126,7 +124,7 @@ class App extends Component {
                                 </div>
                             </div>
                         )}/>
-                        <Route path={"/form"} render={props => (
+                        <Route path={"/form"} render={() => (
                             <Novi
                                 addPerson={this.addPerson}
                                 id={this.state.tempId}

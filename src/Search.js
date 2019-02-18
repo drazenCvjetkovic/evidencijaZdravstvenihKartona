@@ -1,13 +1,9 @@
 
 import React, {Component} from 'react';
 
-///search komponenta
 class Search extends Component {
-
-
     render() {
 
-        // const { onChange} = this.props;
         return (
             <div  className=" container mt-2 " style={{maxWidth:"800px"}} >
                 <input type="text"
@@ -16,7 +12,6 @@ class Search extends Component {
                        className={"form-control"}
                        placeholder={"Pretraži"}/>
             </div>
-
 
         )
     }
