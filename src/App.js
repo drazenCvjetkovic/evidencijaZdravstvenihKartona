@@ -89,7 +89,6 @@ class App extends Component {
 
     render() {
         const {persons, filter, tempId} = this.state
-        // console.log("stateApp:",persons)
 
         let displayList = "";
         let displayNew = "none";
