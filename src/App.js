@@ -58,17 +58,7 @@ class App extends Component {
     searchChange = (e) => {
         this.setState({filter: e.target.value})
     }
-
-    // removePerson = (id) => {
-    //     let newPersons = [...this.state.persons];
-    //     newPersons = newPersons.filter(person => {
-    //         return person.id !== id;
-    //     });
-    //     this.setState({
-    //         persons: newPersons
-    //     });
-    //     this.setPersons(newPersons)
-    // }
+    
     editPerson = (id) => {
         const persons = this.getPersons()
         const person = persons.filter(item => item.id === id)
@@ -89,7 +79,7 @@ class App extends Component {
 
     render() {
         const {persons, filter, tempId} = this.state
-
+        //
         let displayList = "";
         let displayNew = "none";
         if (tempId !== null) {
