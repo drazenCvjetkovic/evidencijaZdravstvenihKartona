@@ -94,7 +94,6 @@ class Edit extends Component {
                 <div>
                     {editedPerson}
                     <div style={styles.span} className={"m-2"}>
-                        <span>{info}</span>
 
                     </div>
                 </div>
