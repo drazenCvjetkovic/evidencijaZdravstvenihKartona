@@ -7,15 +7,7 @@ class Edit extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
-        let id;
-        this.props.person.map(item => {
-            // ime = item.ime;
-            // prezime = item.prezime;
-            // brojKartona = item.brojKartona;
-            // datumRodjenja = item.datumRodjenja;
-            // spol = item.spol;
-            id = item.id;
-        })
+        let id = this.props.id
         const brojKartona = e.target.elements.brojKartona.value;
         const ime = e.target.elements.ime.value;
         const prezime = e.target.elements.prezime.value;
@@ -97,13 +89,7 @@ class Edit extends Component {
                 }
 
             }
-            if (this.state.person) {
-                const {ime, prezime, brojKartona, spol, datumRodjenja} = this.state.person
-                // setTimeout()
-                // info = ` ${brojKartona} ${ime} ${prezime} ${datumRodjenja} ${spol}`
 
-
-            }
             return (
                 <div>
                     {editedPerson}
