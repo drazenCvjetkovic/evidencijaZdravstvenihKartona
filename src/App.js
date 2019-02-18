@@ -58,7 +58,7 @@ class App extends Component {
     searchChange = (e) => {
         this.setState({filter: e.target.value})
     }
-    
+
     editPerson = (id) => {
         const persons = this.getPersons()
         const person = persons.filter(item => item.id === id)
