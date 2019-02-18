@@ -21,5 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.idea
+#Adding .idea to gitIgnore
+.workspace.xml
+.usage.statistics.xml
+.tasks.xml
+
 
