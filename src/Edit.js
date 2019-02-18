@@ -79,23 +79,12 @@ class Edit extends Component {
                     </button>
                 </Form>
             )
-            // let ime , prezime ,brojKartona ,spol ,datumRodjenja = ""
-            let info;
-            const styles = {
-                span: {
-                    textAlign: "center",
-                    fontSize:25
 
-                }
-
-            }
 
             return (
                 <div>
                     {editedPerson}
-                    <div style={styles.span} className={"m-2"}>
 
-                    </div>
                 </div>
             );
         } else {
