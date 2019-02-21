@@ -2,94 +2,119 @@ import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form'
 
 class Edit extends Component {
-    state = {
-        person: ''
+
+    constructor(props) {
+        super(props);
+        console.log("props", props);
+        this.state = {
+            id:this.props.person.id,
+            brojKartona: this.props.person.brojKartona,
+            ime:this.props.person.ime,
+            prezime:this.props.person.prezime,
+            datumRodjenja:this.props.person.datumRodjenja,
+            spol:this.props.person.spol,
+
+
+        }
+
     }
+
+    onChange = name => (e) => {
+        this.setState({
+            [name]: e.target.value
+        })
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
-        let id = this.props.id
-        const brojKartona = e.target.elements.brojKartona.value;
-        const ime = e.target.elements.ime.value;
-        const prezime = e.target.elements.prezime.value;
-        let datumRodjenja = e.target.elements.datumRodjenja.value;
-        let spol = e.target.elements.spol.value
-        const person = {
-            brojKartona,
-            ime,
-            prezime,
-            datumRodjenja,
-            spol,
-            id,
-        }
-        this.setState({person})
-        this.props.addPerson(person)
+        this.props.addPerson(this.state)
+        // this.setState({
+        //     id:this.props.person.id,
+        //     brojKartona: this.props.person.brojKartona,
+        //     ime:this.props.person.ime,
+        //     prezime:this.props.person.prezime,
+        //     datumRodjenja:this.props.person.datumRodjenja,
+        //     spol:this.props.person.spol,
+        // })
+        // let id = this.props.id
+        // const brojKartona = e.target.elements.brojKartona.value;
+        // const ime = e.target.elements.ime.value;
+        // const prezime = e.target.elements.prezime.value;
+        // let datumRodjenja = e.target.elements.datumRodjenja.value;
+        // let spol = e.target.elements.spol.value
+
     }
 
     render() {
-        const {id, person} = this.props
-        if (id !== null) {
-
-            ///Generiraj komponentu na osnovu dobivenog person
-            let editedPerson = person.map(item =>
-                <Form key={item.id} ref={"myForm"} onSubmit={this.onSubmit}>
-                    <Form.Group>
-
-                        <Form.Control name="brojKartona"
-                                      type="text"
-                                      placeholder="Broj Kartona"
-                                      defaultValue={item.brojKartona}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Control name="ime"
-                                      type="text"
-                                      placeholder={"Ime"}
-                                      defaultValue={item.ime}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Control name="prezime"
-                                      type="text"
-                                      placeholder={"Prezime"}
-                                      defaultValue={item.prezime}
-                        />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Control name="datumRodjenja"
-                                      type="text"
-                                      defaultValue={item.datumRodjenja}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Control as="select"
-                                      name={"spol"}
-                                      defaultValue={item.spol}
-                        >
-                            <option name="spol">Spol</option>
-                            <option name="male" value={"Muški"}>Muški</option>
-                            <option name="female" value={"Ženski"}>Ženski</option>
-                        </Form.Control>
-                    </Form.Group>
-
-                    <button className="btn btn-primary btn-block"
-                    >Spremi
-                    </button>
-                </Form>
-            )
+            console.log("ID",this.props.editId)
+            console.log(this.props.person)
+            console.log(this.state)
+        return (
+            <Form key={this.props.person.id}  onSubmit={this.onSubmit}>
+                <Form.Group>
+                    <Form.Control name="brojKartona"
+                                  type="text"
+                                  placeholder="Broj Kartona"
+                                  defaultValue={this.state.brojKartona}
+                                  required
+                                  onChange={this.onChange("brojKartona")}
 
 
-            return (
-                <div>
-                    {editedPerson}
+                    />
+                </Form.Group>
 
-                </div>
-            );
-        } else {
-            return (null)
-        }
+                <Form.Group>
+                    <Form.Control name="ime"
+                                  type="text"
+                                  placeholder={"Ime"}
+                                  defaultValue={this.state.ime}
+                                  required
+                                  onChange={this.onChange("ime")}
+
+
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control name="prezime"
+                                  type="text"
+                                  placeholder={"Prezime"}
+                                  defaultValue={this.state.prezime}
+                                  required
+                                  onChange={this.onChange("prezime")}
+
+
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Control name="datumRodjenja"
+                                  type="text"
+                                  defaultValue={this.state.datumRodjenja}
+                                  required
+                                  onChange={this.onChange("datumRodjenja")}
+
+
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control as="select"
+                                  name={"spol"}
+                                  defaultValue={this.state.spol}
+                                  onChange={this.onChange("spol")}
+
+                    >
+                        <option name="spol">Spol</option>
+                        <option name="male" value={"Muški"}>Muški</option>
+                        <option name="female" value={"Ženski"}>Ženski</option>
+                    </Form.Control>
+                </Form.Group>
+                <button  className="btn btn-primary btn-block" onClick={this.props.editPerson}
+                > Spremi
+                </button>
+
+            </Form>
+        )
     }
 }
 

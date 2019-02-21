@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import SimpleReactValidator from 'simple-react-validator'
 
 
 class Novi extends Component {
+    constructor(props){
+        super(props)
+        this.validator = new SimpleReactValidator();
+    }
 
 
     state = {
@@ -11,7 +16,6 @@ class Novi extends Component {
         prezime: "",
         datumRodjenja: "",
         spol: "",
-
     }
 
     onChange = name => (e) => {
@@ -21,28 +25,28 @@ class Novi extends Component {
     }
 
     onSubmit = (e) => {
-
         e.preventDefault();
         this.props.addPerson(this.state)
-
         this.refs.myForm.reset();
         this.refs.brojKartona.focus();
-
     }
 
     render() {
 
         return (
-            <div className="container" style={{maxWidth: "800px"}}>
+            <div className="container">
                 <h2 style={{color: "gray"}}>Unesi Podatke</h2>
                 <Form ref={"myForm"} onSubmit={this.onSubmit}>
                     <Form.Group>
                         <Form.Control name="brojKartona"
                                       required
-                                      type="text"
-                                      placeholder="Broj Kartona"
+                                      type="number"
+                                      min={"100000000"}
+                                      max={"999999999"}
+                                      placeholder="Broj Kartona 9 brojeva"
                                       onChange={this.onChange("brojKartona")}
                                       ref={"brojKartona"}
+
 
                         />
                     </Form.Group>
@@ -56,6 +60,7 @@ class Novi extends Component {
                                       ref={"ime"}
 
                         />
+
                     </Form.Group>
 
                     <Form.Group>
@@ -83,7 +88,6 @@ class Novi extends Component {
                                       name={"spol"}
                                       required
                                       onChange={this.onChange("spol")}
-
                                       ref={"spol"}
                         >
                             <option name="spol" ref={"spol"}>Spol</option>
@@ -93,11 +97,10 @@ class Novi extends Component {
                         </Form.Control>
                     </Form.Group>
 
-                    <button onClick={this.onNew} className="btn btn-primary btn-block"
-                    >Spremi
+                    <button className="btn btn-primary btn-block"
+                    > Spremi
                     </button>
                 </Form>
-
 
             </div>
         );

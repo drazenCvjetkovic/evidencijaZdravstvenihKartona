@@ -1,28 +1,18 @@
 import React, {Component} from 'react';
-const formatDate = (dateB) => {
-    const y = new Date(dateB).getFullYear();
-    const m = new Date(dateB).getMonth() + 1;
-    const d = new Date(dateB).getDate();
-    return `${d}-${m}-${y}`;
-}
-
-const isSearched = searchTerm => item =>
-    //ova druga funkcija će biti map()
-    item.ime.toLowerCase().includes(searchTerm.toLowerCase())
-    || item.prezime.toLowerCase().includes(searchTerm.toLowerCase())
-    || item.brojKartona.toString().includes(searchTerm.toLowerCase())
-    || item.spol.toLowerCase().includes(searchTerm.toLowerCase())
+import Edit from "./Edit";
 
 class ListaSvih extends Component {
 
+    isSearched = searchTerm => item =>
+        //ova druga funkcija će biti map()
+        item.ime.toLowerCase().includes(searchTerm.toLowerCase())
+        || item.prezime.toLowerCase().includes(searchTerm.toLowerCase())
+        || item.brojKartona.toString().includes(searchTerm.toLowerCase())
+        || item.spol.toLowerCase().includes(searchTerm.toLowerCase())
 
-
-    render()
-    {
-        const {persons, filter, removePerson ,editPerson} = this.props
+    render() {
         return (
             <div className="container ">
-
                 <table className="table table-striped mt-5">
                     <thead>
                     <tr>
@@ -31,34 +21,45 @@ class ListaSvih extends Component {
                         <th>Prezime</th>
                         <th>Datum Rođenja</th>
                         <th>Spol</th>
-                        <th></th>
+                        <th/>
                     </tr>
                     </thead>
                     <tbody>
+                    {this.props.persons.filter(this.isSearched(this.props.filter)).map(item =>
 
-                    {persons.filter(isSearched(filter)).map(item =>
                         <tr key={item.id} className={"table-row"}>
                             <td>{item.brojKartona} </ td>
                             <td>{item.ime}</ td>
                             <td>{item.prezime}</td>
-                            <td>{item.datumRodjenja = formatDate(item.datumRodjenja)}</ td>
+                            <td>{item.datumRodjenja}</ td>
                             <td style={{width: '10%'}}>{item.spol}</ td>
                             <td>
 
-                                <a href={"#"} className={" btn btn-danger btn-sm"}
-                                   onClick={() => removePerson(item.id)}>Delete</a>
+                                <button  className={" btn btn-danger btn-sm"}
+                                   onClick={() => this.props.removePerson(item.id)}>Delete</button>
 
-                                <a href={"#"} className={" btn btn-primary btn-sm ml-1"}
-
-                                   onClick={() => editPerson(item.id) }>
-
-                                    Edit</a>
+                                <button  className={" btn btn-primary btn-sm ml-1"}
+                                   onClick={ () => this.props.editPerson (item.id)}>Edit</button>
                             </td>
 
-                        </tr>
-                    )}
-                    </tbody>
+                            <td style={{display:this.props.edit}}>
+                                <Edit
+                                    editId={this.props.editId}
+                                    person={item}
+                                    getPersons={this.props.getPersons}
+                                    addPerson={this.props.addPerson}
+                                    savePersons={this.props.savePersons}
+                                    editPerson={this.props.editPerson}
 
+                                />
+                            </td>
+
+
+                        </tr>
+
+                    )}
+
+                    </tbody>
                 </table>
 
             </div>
